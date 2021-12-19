@@ -1,0 +1,12 @@
+name: Main
+version: '${project.version}'
+main: main.main.Main
+api-version: 1.18
+commands:
+  login:
+    aliases:
+      - "lg"
+      - "l"
+      - "L"
+    description: :"登陸或註冊"
+    usage: "/login [password]"
