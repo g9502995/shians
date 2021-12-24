@@ -33,7 +33,7 @@ public class eventlistener implements Listener {
         LoginData.addPlayerName(e.getPlayer().getName());
 
         if (LoginData.hasPlayerName(e.getPlayer().getName())) {
-            e.getPlayer().setGameMode(GameMode.CREATIVE);
+
             BukkitScheduler scheduler = getServer().getScheduler();
             scheduler.scheduleSyncRepeatingTask(Main.getPlugin(), new Runnable() {
 
@@ -41,17 +41,32 @@ public class eventlistener implements Listener {
                 @Override
 
                 public void run() {
-
-
                     i--;
-                    String I = "目前數字:"+i;
-                    e.getPlayer().sendMessage(I);
-                    if(i<0){
-                        scheduler.cancelTasks(Main.getPlugin());
+                   if(!LoginData.hasPlayerName(e.getPlayer().getName())) {
+                       scheduler.cancelTasks(Main.getPlugin());
+                       return ;
+                   }
+                    if (i < 29) {
+                        e.getPlayer().setGameMode(GameMode.CREATIVE);
+                        e.getPlayer().sendMessage("請登入/login");
                     }
+
+
+                        String I = "目前數字:" + i;
+                        e.getPlayer().sendMessage(I);
+                        if (i < 18) {
+                            e.getPlayer().sendMessage("請登入/login");
+                        }
+                        if (i < 1) {
+                            scheduler.cancelTasks(Main.getPlugin());
+                        }
+
                 }
 
             },0L,  1*20L);
+
+
+        }else{
 
         }
     }

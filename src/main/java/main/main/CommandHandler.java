@@ -12,9 +12,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.security.NoSuchAlgorithmException;
 
 public class CommandHandler implements CommandExecutor{
+
     @Override
     @ParametersAreNonnullByDefault
+
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
         if (!(sender instanceof Player)) {
             // 如果 sender 是 Player 的实例，那么这条命令是玩家发送的，反之则不是
             return false;
@@ -41,6 +44,7 @@ public class CommandHandler implements CommandExecutor{
                 // 解锁玩家
                 Bukkit.getPlayer(sender.getName()).setGameMode(GameMode.SURVIVAL);
                 sender.sendMessage(ChatColor.GREEN + "登录成功，欢迎回来！");
+
             } else {
                 sender.sendMessage(ChatColor.RED + "密码错误！");
             }
@@ -50,7 +54,7 @@ public class CommandHandler implements CommandExecutor{
         } else {
             // 玩家没注册，准备注册
             try {
-                ConfigReader.addPlayer(sender.getName(), pwdConcat);
+                ConfigReader.addPlayer(sender.getName(), pwdConcat,((Player) sender).getUniqueId().toString());
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
@@ -62,4 +66,5 @@ public class CommandHandler implements CommandExecutor{
             return true;
         }
     }
+
 }

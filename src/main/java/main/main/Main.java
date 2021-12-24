@@ -33,6 +33,7 @@ public final class Main extends JavaPlugin {
         // Plugin shutdown logic
         saveConfig();
     }
+    //給予插件參數
     public static Main getPlugin() {
         return plugin;
     }
