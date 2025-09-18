@@ -10,3 +10,9 @@ commands:
       - "L"
     description: :"登陸或註冊"
     usage: "/login [password]"
+  register:
+    aliases:
+      - "reg"
+      - "r"
+    description: "註冊一個新帳戶"
+    usage: "/register [password] [password]"
